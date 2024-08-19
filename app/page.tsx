@@ -31,17 +31,21 @@ function Main() {
 
     const prompt = generatePrompt(selectedSkill, input);
 
-    const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    try {
+      const genAI = new GoogleGenerativeAI(API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
 
-    const message = parseMessage(text);
+      const message = parseMessage(text);
 
-    addMessage(message);
-    setInputEnabled(false);
-    setOptions(postResponseOptions);
+      addMessage(message);
+      setInputEnabled(false);
+      setOptions(postResponseOptions);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const initialChoice = [
@@ -108,7 +112,7 @@ function Main() {
   const [options, setOptions] = useState<Choice[] | null>(initialChoice);
 
   function addMessage(message: MessageType) {
-    setMessages([...messages, message]);
+    setMessages((messages) => [...messages, message]);
   }
 
   return (

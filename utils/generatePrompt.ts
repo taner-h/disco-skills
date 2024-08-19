@@ -20,6 +20,6 @@ MOTORICS: HAND/EYE COORDINATION, PERCEPTION, REACTION SPEED, SAVOIR FAIRE, INTER
     Difficulty Levels: Trivial, Easy, Medium, Challenging, Formidable, Legendary, Heroic, Godly, Impossible
 Outcome: Success, Failure, Critical Success, Critical Failure
 There shouldn't be any markdown formatting. The format of your answer should be as follows:
-Skill__Attribute__Difficulty Level__Outcome__Generated Skill Dialogue
+Skill_Attribute_Difficulty Level_Outcome_Generated Skill Dialogue
 Here's the description: ${input}`;
 }
