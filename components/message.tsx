@@ -1,20 +1,20 @@
 export type MessageType = NpcMessage | SystemMessage | SkillMessage;
 
-type NpcMessage = {
+export type NpcMessage = {
   type: "npc";
   name?: string;
   text: string;
 };
 
-type SystemMessage = {
+export type SystemMessage = {
   type: "system";
   text: string;
 };
 
-type SkillMessage = {
+export type SkillMessage = {
   type: "skill";
   skill: string;
-  attribute: "intellect" | "psyche" | "physique" | "motorics";
+  attribute: string;
   difficulty: string;
   outcome: string;
   text: string;
@@ -44,7 +44,10 @@ export function Message({
       </p>
     );
   } else if (message.type === "skill") {
-    const skillColor = attributeColors[message.attribute];
+    const skillColor =
+      attributeColors[
+        message.attribute.toLowerCase() as keyof typeof attributeColors
+      ];
 
     return (
       <p>
@@ -64,7 +67,6 @@ export function Message({
   } else {
     return (
       <p className="text-[#8bb37a]">
-        <span className="font-semibold">{"SYSTEM – "}</span>
         <span>{message.text}</span>
       </p>
     );

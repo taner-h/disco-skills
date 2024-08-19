@@ -1,7 +1,24 @@
 import { Libre_Baskerville } from "next/font/google";
-import { Message, type MessageType } from "./message";
-import { useState } from "react";
+import {
+  Message,
+  type MessageType,
+  type NpcMessage,
+  type SkillMessage,
+} from "./message";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useLayoutEffect,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
 import { UserChoice } from "./user-choice";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/redux/store";
+import { skillAttributes } from "@/data/data";
+import { generatePrompt } from "@/utils/generatePrompt";
 
 const baskerville = Libre_Baskerville({
   weight: ["400", "700"],
@@ -9,65 +26,42 @@ const baskerville = Libre_Baskerville({
   subsets: ["latin"],
 });
 
-const initialMessage = {
-  type: "npc",
-  name: "Distant Echo",
-  text: "There’s something in the air, isn’t there? A tension, like the fog over Martinaise, obscuring what’s real. Describe what lies before you, and we’ll shape it into something strange, something wondrous. This isn’t just a conversation; it’s a journey into the depths of your own mind.",
-} as const;
+export type Choice = {
+  text: string;
+  callback: () => void;
+  isClicked: boolean;
+};
 
-const initialOptions = [
-  "OK, but aren't you the intelligent one? Just find the appropriate skill.",
-  "Yeah, I don't trust you. Let me pick the skill.",
-  "Wait, what does this do again?",
-];
+export function Homepage({
+  setWillSelectSkill,
+  inputEnabled,
+  setInputEnabled,
+  messages,
+  addMessage,
+  options,
+  setOptions,
+  input,
+  setInput,
+  handleSubmit,
+}: {
+  setWillSelectSkill: Dispatch<SetStateAction<boolean>>;
+  setInputEnabled: Dispatch<SetStateAction<boolean>>;
+  inputEnabled: boolean;
+  messages: MessageType[];
+  addMessage: (message: MessageType) => void;
+  options: Choice[] | null;
+  setOptions: Dispatch<SetStateAction<Choice[] | null>>;
+  input: string;
+  setInput: Dispatch<SetStateAction<string>>;
+  handleSubmit: () => Promise<void>;
+}) {
+  const bottomRef = useRef<HTMLDivElement>(null);
 
-const skillMessages: MessageType[] = [
-  {
-    type: "skill",
-    skill: "Shivers",
-    attribute: "physique",
-    difficulty: "Medium",
-    outcome: "Success",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
-  },
-  {
-    type: "skill",
-    skill: "Inland Empire",
-    attribute: "psyche",
-    difficulty: "Impossible",
-    outcome: "Failure",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
-  },
-  {
-    type: "skill",
-    skill: "Logic",
-    attribute: "intellect",
-    difficulty: "Medium",
-    outcome: "Success",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
-  },
-  {
-    type: "skill",
-    skill: "Savoir Faire",
-    attribute: "motorics",
-    difficulty: "Impossible",
-    outcome: "Success",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
-  },
-];
-
-const systemMessage = {
-  type: "system",
-  text: "Describe a scene or thought, and choose a skill if desired—the AI will generate a dialogue based on your input.",
-} as const;
-
-export function Homepage() {
-  const [messages, setMessages] = useState<MessageType[]>([
-    initialMessage,
-    systemMessage,
-    // ...skillMessages,
-  ]);
-  const [options, setOptions] = useState<string[] | null>(initialOptions);
+  useEffect(() => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
 
   return (
     <div className={baskerville.className}>
@@ -83,8 +77,23 @@ export function Homepage() {
               />
             ))}
             {options && <UserChoice options={options} />}
-
-            <div className="h-[192px]"></div>
+            {inputEnabled && (
+              <div>
+                <textarea
+                  id="prompt"
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  rows={3}
+                  className="bg-transparent border-none text-white focus:outline-none resize-none w-full"
+                  placeholder="Enter your text..."
+                />
+                <button
+                  onClick={handleSubmit}
+                  className="w-full h-[42px] continue-btn"
+                ></button>
+              </div>
+            )}
+            <div ref={bottomRef} className="h-[192px]"></div>
           </article>
         </section>
       </main>

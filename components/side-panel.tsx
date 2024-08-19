@@ -11,8 +11,13 @@ import { skillDescriptions } from "@/utils/skillDescriptions";
 import { skillImages } from "@/utils/skillImages";
 
 import Image from "next/image";
+import type { Dispatch, SetStateAction } from "react";
 
-export default function SidePanel() {
+export default function SidePanel({
+  setWillSelectSkill,
+}: {
+  setWillSelectSkill: Dispatch<SetStateAction<boolean>>;
+}) {
   const dispatch = useDispatch();
   const selectedSkill = useSelector((state: RootState) => state.selectedSkill);
   const skillHeadline: string = skillDescriptions[selectedSkill][0];
@@ -53,7 +58,12 @@ export default function SidePanel() {
           <p className="h-[56px]">{skillHeadline}</p>
         </ul>
         <div className="flex flex-col gap-1">
-          <button onClick={() => handleSetSignature(selectedSkill)}>
+          <button
+            onClick={() => {
+              handleSetSignature(selectedSkill);
+              setWillSelectSkill(false);
+            }}
+          >
             Select Skill
           </button>
         </div>

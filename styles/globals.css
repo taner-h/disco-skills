@@ -82,8 +82,15 @@ body {
   background: url("../content/images/backgrounds/tape1.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: bottom;
   opacity: 0.9;
   /* background-position: bottom right 10%; */
+}
+
+.continue-btn {
+  background: url("../content/images/backgrounds/button-cont.png");
+  background-repeat: no-repeat;
+  background-size: 100% 42px;
 }
 
 button {

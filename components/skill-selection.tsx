@@ -1,7 +1,12 @@
+import type { Dispatch, SetStateAction } from "react";
 import SidePanel from "./side-panel";
 import SkillsContainer from "./skills-container";
 
-export function SkillSelection() {
+export function SkillSelection({
+  setWillSelectSkill,
+}: {
+  setWillSelectSkill: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
     <main className="min-h-screen flex items-center">
       <ul className="flex flex-col 2xl:flex-row justify-center items-center">
@@ -12,7 +17,7 @@ export function SkillSelection() {
           id="side-panel-container"
           className="w-full 2xl:px-24 py-8 2xl:w-1/3"
         >
-          <SidePanel />
+          <SidePanel setWillSelectSkill={setWillSelectSkill} />
         </li>
       </ul>
     </main>

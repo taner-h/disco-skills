@@ -6,7 +6,7 @@ import { skillImages } from "@/utils/skillImages";
 import { updateAttribute } from "../redux/slices/attributesSlice";
 import { setSelectedSkill } from "../redux/slices/selectedSkillSlice";
 
-import Skill from "./Skill";
+import Skill from "./skill";
 import Attribute from "./attribute";
 
 export default function SkillsContainer() {
