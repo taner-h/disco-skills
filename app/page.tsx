@@ -29,6 +29,9 @@ function Main() {
     const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
     if (!API_KEY) return;
 
+    addMessage({ type: "user", text: input });
+    setInputEnabled(false);
+
     const prompt = generatePrompt(selectedSkill, input);
 
     try {
@@ -41,7 +44,6 @@ function Main() {
       const message = parseMessage(text);
 
       addMessage(message);
-      setInputEnabled(false);
       setOptions(postResponseOptions);
     } catch (error) {
       console.log(error);

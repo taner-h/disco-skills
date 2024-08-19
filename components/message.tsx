@@ -1,8 +1,17 @@
-export type MessageType = NpcMessage | SystemMessage | SkillMessage;
+export type MessageType =
+  | NpcMessage
+  | SystemMessage
+  | SkillMessage
+  | UserMessage;
 
 export type NpcMessage = {
   type: "npc";
   name?: string;
+  text: string;
+};
+
+export type UserMessage = {
+  type: "user";
   text: string;
 };
 
@@ -62,6 +71,13 @@ export function Message({
         <span className={isLast ? "text-white" : "text-white/50"}>
           {message.text}
         </span>
+      </p>
+    );
+  } else if (message.type === "user") {
+    return (
+      <p className={isLast ? "text-[#929ea6]" : "text-[#929ea6]/75"}>
+        <span className="font-semibold">{"YOU"}</span>
+        <span>{" – " + message.text}</span>
       </p>
     );
   } else {

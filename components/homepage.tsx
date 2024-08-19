@@ -61,7 +61,7 @@ export function Homepage({
     if (bottomRef.current) {
       bottomRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }, []);
+  }, [messages]);
 
   return (
     <div className={baskerville.className}>
@@ -84,7 +84,7 @@ export function Homepage({
                   value={input}
                   onChange={(event) => setInput(event.target.value)}
                   rows={3}
-                  className="bg-transparent border-none text-white focus:outline-none resize-none w-full"
+                  className="bg-transparent border-none text-[#929ea6] focus:outline-none resize-none w-full"
                   placeholder="Enter your text..."
                 />
                 <button
