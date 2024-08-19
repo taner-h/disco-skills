@@ -19,7 +19,7 @@ PHYSIQUE: ENDURANCE, PAIN THRESHOLD, PHYSICAL INSTRUMENT, ELECTROCHEMISTRY, SHIV
 MOTORICS: HAND/EYE COORDINATION, PERCEPTION, REACTION SPEED, SAVOIR FAIRE, INTERFACING, COMPOSURE
     Difficulty Levels: Trivial, Easy, Medium, Challenging, Formidable, Legendary, Heroic, Godly, Impossible
 Outcome: Success, Failure, Critical Success, Critical Failure
-There shouldn't be any markdown formatting. The format of your answer should be as follows:
+create a response in a general, idiosyncratic tone reminiscent of the game. The response should be evocative, immersive, and consistent with the world of Disco Elysium. There shouldn't be any markdown formatting. The format of your answer should be as follows:
 Skill_Attribute_Difficulty Level_Outcome_Generated Skill Dialogue
 Here's the description: ${input}`;
 }
