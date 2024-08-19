@@ -16,6 +16,7 @@ function Main() {
   const [willSelectSkill, setWillSelectSkill] = useState(false);
   const [inputEnabled, setInputEnabled] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
+  const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<MessageType[]>([
     initialMessage,
     systemMessage,
@@ -37,9 +38,12 @@ function Main() {
     try {
       const genAI = new GoogleGenerativeAI(API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+      setLoading(true);
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
+      setLoading(false);
 
       const message = parseMessage(text);
 
@@ -133,6 +137,7 @@ function Main() {
           input={input}
           setInput={setInput}
           handleSubmit={handleSubmit}
+          loading={loading}
         />
       )}
     </main>

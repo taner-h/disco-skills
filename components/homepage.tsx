@@ -19,6 +19,8 @@ import { useSelector } from "react-redux";
 import type { RootState } from "@/redux/store";
 import { skillAttributes } from "@/data/data";
 import { generatePrompt } from "@/utils/generatePrompt";
+import loadingPanel from "@/content/images/backgrounds/loading-panel.png";
+import Image from "next/image";
 
 const baskerville = Libre_Baskerville({
   weight: ["400", "700"],
@@ -43,6 +45,7 @@ export function Homepage({
   input,
   setInput,
   handleSubmit,
+  loading,
 }: {
   setWillSelectSkill: Dispatch<SetStateAction<boolean>>;
   setInputEnabled: Dispatch<SetStateAction<boolean>>;
@@ -54,6 +57,7 @@ export function Homepage({
   input: string;
   setInput: Dispatch<SetStateAction<string>>;
   handleSubmit: () => Promise<void>;
+  loading: boolean;
 }) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -87,10 +91,12 @@ export function Homepage({
                   className="bg-transparent border-none text-[#929ea6] focus:outline-none resize-none w-full"
                   placeholder="Enter your text..."
                 />
-                <button
-                  onClick={handleSubmit}
-                  className="w-full h-[42px] continue-btn"
-                ></button>
+                {!loading && (
+                  <button
+                    onClick={handleSubmit}
+                    className="w-full h-[42px] continue-btn"
+                  ></button>
+                )}
               </div>
             )}
             <div ref={bottomRef} className="h-[192px]"></div>
