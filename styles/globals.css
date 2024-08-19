@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Dobra";
+  src: local("Dobra"), url("../content/fonts/Dobra-Book.woff") format("woff");
+}
+@font-face {
+  font-family: "Dobra-Light";
+  src: local("Dobra-Light"),
+    url("../content/fonts/Dobra-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Libre Baskerville";
+  font-weight: 400;
+  src: url("../content/fonts/LibreBaskerville-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: italic;
+  src: url("../content/fonts/LibreBaskerville-Italic.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Libre Baskerville";
+  font-weight: 700;
+  src: url("../content/fonts/LibreBaskerville-Bold.ttf") format("ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+:root {
+  --c-lighter-gray: #3b413e;
+  --c-light-gray: #2a2e2c;
+  --c-accent: #d7441a;
+  --c-white: #fbfbfb;
+  --c-white-dim: #7e7e7e;
+  --c-black: #050505;
+  --c-gray: #171918;
+
+  --border-radius-default: 0.05em;
+  --transition-default: all 0.1s ease;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+}
+/* ::webkit-scrollbar {
+  background-color: #171918;
+  width: 12px;
+}
+::webkit-scrollbar-thumb {
+  background-color: #d7441a;
+  border-radius: 100vw;
+  border: solid 2px #171918;
+}
+:webkit-scrollbar-track {
+  background-color: #d7441a;
+  margin-block: 0.5em;
+}
+::webkit-scrollbar-corner {
+  background-color: #d7441a;
+} */
+
+body {
+  font-family: "Dobra", serif;
+
+  color: var(--c-white);
+}
+
+.bg-dark {
+  background: linear-gradient(rgba(0, 1, 8, 0.85), rgba(0, 0, 0, 0.65)),
+    url("../content/images/backgrounds/background-2.webp");
+  background-size: cover;
+}
+
+.bg-light {
+  background: linear-gradient(rgba(0, 1, 8, 0.45), rgba(0, 0, 0, 0.25)),
+    url("../content/images/backgrounds/background-2.webp");
+  background-size: cover;
+}
+
+.dialogue-panel {
+  background: url("../content/images/backgrounds/tape1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  /* background-position: bottom right 10%; */
+}
+
+button {
+  color: var(--c-gray);
+  background-color: var(--c-accent);
+  transition: var(--transition-default);
+  border-radius: var(--border-radius-default);
+  position: relative;
+  padding: 0 0.75em 0.1em;
+  overflow: hidden;
+}
+
+a {
+  transition: var(--transition-default);
+  color: var(--c-accent);
+}
+
+blockquote {
+  border-left: 2px solid var(--c-white);
+  border-radius: var(--border-radius-default);
+  padding-left: 0.5em;
+}
+
+.skill-container {
+  transition: var(--transition-default);
+  border: solid 1px var(--c-light-gray);
+  outline: solid 0px var(--c-light-gray);
+  position: relative;
+  cursor: pointer;
+}
+.selected-skill {
+  outline: 4px solid var(--c-white);
+  border-radius: var(--border-radius-default);
+  filter: brightness(125%);
+}
+
+.skill-score {
+  background-color: var(--c-white);
+  border-radius: var(--border-radius-default);
+  color: var(--c-black);
+
+  width: 0.9em;
+  height: 1.25em;
+  right: 4px;
+  bottom: 4px;
+  z-index: 5;
+
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.skill-gradient-overlay {
+  z-index: 0;
+  width: 100%;
+  height: 50%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  background: linear-gradient(0deg, black, transparent);
+}
+
+.skill-title {
+  z-index: 10;
+  position: absolute;
+  bottom: 0.25rem;
+  text-align: center;
+}
+
+.no-button-styling {
+  padding: 0;
+  background-color: transparent;
+  color: var(--c-white);
+}
+
+.grayscale {
+  filter: grayscale(100%) brightness(50%);
+}
+
+.darkened {
+  filter: brightness(20%);
+}
+
+#skill-container {
+  background: url("../content/images/ui/panel-thick-horizontal.png");
+  background-size: cover;
+  background-repeat: repeat-x;
+  box-shadow: 24px 24px 24px black;
+}
+
+#side-panel-container {
+  position: relative;
+  background-color: black;
+  border-radius: var(--border-radius-default);
+  overflow: hidden;
+  box-shadow: 24px 24px 24px rgba(0, 0, 0, 0.658);
+}
+
+#side-panel-container::before,
+#side-panel-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background-image: url("../content/images/ui/panel-thin.png");
+  background-size: cover;
+  border-radius: var(--border-radius-default);
+}
+
+#side-panel-container::before {
+  left: 0;
+}
+
+#side-panel-container::after {
+  right: 0;
+}
+
+#panel-skill-title {
+  background-image: url("../content/images/ui/paint-white.png");
+  background-size: cover;
+}
