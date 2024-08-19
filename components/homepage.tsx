@@ -16,13 +16,57 @@ const initialMessage = {
 } as const;
 
 const initialOptions = [
-  "Aren't you the intelligent one? Just find the appropriate skill.",
+  "OK, but aren't you the intelligent one? Just find the appropriate skill.",
   "Yeah, I don't trust you. Let me pick the skill.",
   "Wait, what does this do again?",
 ];
 
+const skillMessages: MessageType[] = [
+  {
+    type: "skill",
+    skill: "Shivers",
+    attribute: "physique",
+    difficulty: "Medium",
+    outcome: "Success",
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
+  },
+  {
+    type: "skill",
+    skill: "Inland Empire",
+    attribute: "psyche",
+    difficulty: "Impossible",
+    outcome: "Failure",
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
+  },
+  {
+    type: "skill",
+    skill: "Logic",
+    attribute: "intellect",
+    difficulty: "Medium",
+    outcome: "Success",
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
+  },
+  {
+    type: "skill",
+    skill: "Savoir Faire",
+    attribute: "motorics",
+    difficulty: "Impossible",
+    outcome: "Success",
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
+  },
+];
+
+const systemMessage = {
+  type: "system",
+  text: "Describe a scene or thought, and choose a skill if desired—the AI will generate a dialogue based on your input.",
+} as const;
+
 export function Homepage() {
-  const [messages, setMessages] = useState<MessageType[]>([initialMessage]);
+  const [messages, setMessages] = useState<MessageType[]>([
+    initialMessage,
+    systemMessage,
+    // ...skillMessages,
+  ]);
   const [options, setOptions] = useState<string[] | null>(initialOptions);
 
   return (

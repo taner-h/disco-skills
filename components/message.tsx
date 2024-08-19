@@ -28,15 +28,15 @@ export function Message({
   isLast: boolean;
 }) {
   const attributeColors = {
-    intellect: "text-[#57c8d8]",
-    psyche: "text-[#7254cf]",
-    physique: "text-[#bd456c]",
-    motorics: "text-[#e0b633]",
+    intellect: ["text-[#57c8d8]", "text-[#57c8d8]/50"],
+    psyche: ["text-[#7254cf]", "text-[#7254cf]/50"],
+    physique: ["text-[#bd456c]", "text-[#bd456c]/50"],
+    motorics: ["text-[#e0b633]", "text-[#e0b633]/50"],
   };
 
   if (message.type === "npc") {
     return (
-      <p className="text-[#747c85]">
+      <p className={isLast ? "text-white" : "text-white/50"}>
         <span className="font-semibold">
           {message.name?.toUpperCase() ?? "YOU"}
         </span>
@@ -48,18 +48,23 @@ export function Message({
 
     return (
       <p>
-        <span className={`${skillColor} font-semibold`}>
+        <span
+          className={`${isLast ? skillColor[0] : skillColor[1]} font-semibold`}
+        >
           {message.skill.toUpperCase()}
         </span>
-        <span className="text-[#747c85]">
+        <span className={isLast ? "text-[#747c85]" : "text-[#747c85]/50"}>
           {` [${message.difficulty}: ${message.outcome}] – `}
         </span>
-        <span className="text-[#d1d6c3]">{message.text}</span>
+        <span className={isLast ? "text-white" : "text-white/50"}>
+          {message.text}
+        </span>
       </p>
     );
   } else {
     return (
       <p className="text-[#8bb37a]">
+        <span className="font-semibold">{"SYSTEM – "}</span>
         <span>{message.text}</span>
       </p>
     );
