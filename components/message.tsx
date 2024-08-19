@@ -1,12 +1,18 @@
-export type MessageType = UserMessage | AiMessage;
+export type MessageType = NpcMessage | SystemMessage | SkillMessage;
 
-type UserMessage = {
-  from: "user";
+type NpcMessage = {
+  type: "npc";
+  name?: string;
   text: string;
 };
 
-type AiMessage = {
-  from: "ai";
+type SystemMessage = {
+  type: "system";
+  text: string;
+};
+
+type SkillMessage = {
+  type: "skill";
   skill: string;
   attribute: "intellect" | "psyche" | "physique" | "motorics";
   difficulty: string;
@@ -28,17 +34,17 @@ export function Message({
     motorics: "text-[#e0b633]",
   };
 
-  if (message.from === "user") {
+  if (message.type === "npc") {
     return (
       <p className="text-[#747c85]">
-        <span className="font-semibold">YOU</span>
+        <span className="font-semibold">
+          {message.name?.toUpperCase() ?? "YOU"}
+        </span>
         <span>{" – " + message.text}</span>
       </p>
     );
-  } else {
+  } else if (message.type === "skill") {
     const skillColor = attributeColors[message.attribute];
-
-    console.log(skillColor);
 
     return (
       <p>
@@ -49,6 +55,12 @@ export function Message({
           {` [${message.difficulty}: ${message.outcome}] – `}
         </span>
         <span className="text-[#d1d6c3]">{message.text}</span>
+      </p>
+    );
+  } else {
+    return (
+      <p className="text-[#8bb37a]">
+        <span>{message.text}</span>
       </p>
     );
   }

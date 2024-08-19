@@ -1,5 +1,7 @@
 import { Libre_Baskerville } from "next/font/google";
 import { Message, type MessageType } from "./message";
+import { useState } from "react";
+import { UserChoice } from "./user-choice";
 
 const baskerville = Libre_Baskerville({
   weight: ["400", "700"],
@@ -7,91 +9,21 @@ const baskerville = Libre_Baskerville({
   subsets: ["latin"],
 });
 
-export function Homepage() {
-  const messages: MessageType[] = [
-    { from: "user", text: "Never ever ever?" },
-    {
-      from: "ai",
-      skill: "Shivers",
-      attribute: "physique",
-      difficulty: "Medium",
-      outcome: "Success",
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt. Ratione facere blanditiis saepe numquam.",
-    },
-    {
-      from: "ai",
-      skill: "Inland Empire",
-      attribute: "psyche",
-      difficulty: "Impossible",
-      outcome: "Success",
-      text: "This is a fight we can win!",
-    },
-    { from: "user", text: "Never ever ever?" },
-    {
-      from: "ai",
-      skill: "Logic",
-      attribute: "intellect",
-      difficulty: "Medium",
-      outcome: "Success",
-      text: "Never ever ever. Ever.",
-    },
-    {
-      from: "ai",
-      skill: "Inland Empire",
-      attribute: "psyche",
-      difficulty: "Impossible",
-      outcome: "Success",
-      text: "This is a fight we can win!",
-    },
-    { from: "user", text: "Never ever ever?" },
-    {
-      from: "ai",
-      skill: "Shivers",
-      attribute: "physique",
-      difficulty: "Medium",
-      outcome: "Success",
-      text: "Never ever ever. Ever.",
-    },
-    {
-      from: "ai",
-      skill: "Savoir Faire",
-      attribute: "motorics",
-      difficulty: "Impossible",
-      outcome: "Success",
-      text: "This is a fight we can win! This is a fight we can win! This is a fight we can win! This is a fight we can win!",
-    },
-    {
-      from: "ai",
-      skill: "Inland Empire",
-      attribute: "psyche",
-      difficulty: "Impossible",
-      outcome: "Success",
-      text: "This is a fight we can win! This is a fight we can win! This is a fight we can win! This is a fight we can win!",
-    },
-    { from: "user", text: "Never ever ever?" },
-    {
-      from: "ai",
-      skill: "Shivers",
-      attribute: "physique",
-      difficulty: "Medium",
-      outcome: "Success",
-      text: "Never ever ever. Ever.",
-    },
-    {
-      from: "ai",
-      skill: "Inland Empire",
-      attribute: "psyche",
-      difficulty: "Impossible",
-      outcome: "Success",
-      text: "This is a fight we can win!",
-    },
-  ];
+const initialMessage = {
+  type: "npc",
+  name: "Distant Echo",
+  text: "There’s something in the air, isn’t there? A tension, like the fog over Martinaise, obscuring what’s real. Describe what lies before you, and we’ll shape it into something strange, something wondrous. This isn’t just a conversation; it’s a journey into the depths of your own mind.",
+} as const;
 
-  const options = [
-    "Aren't you the intelligent one? Just find the appropriate skill.",
-    "Yeah, I don't trust you. Let me pick the skill.",
-    "Wait, what does this do again?",
-  ];
+const initialOptions = [
+  "Aren't you the intelligent one? Just find the appropriate skill.",
+  "Yeah, I don't trust you. Let me pick the skill.",
+  "Wait, what does this do again?",
+];
+
+export function Homepage() {
+  const [messages, setMessages] = useState<MessageType[]>([initialMessage]);
+  const [options, setOptions] = useState<string[] | null>(initialOptions);
 
   return (
     <div className={baskerville.className}>
@@ -106,16 +38,8 @@ export function Homepage() {
                 isLast={messages.length - 1 === index}
               />
             ))}
-            <div className="space-y-1">
-              {options.map((option, index) => (
-                <p>
-                  {index + 1}. -{" "}
-                  <span className="text-[#d94421] hover:text-white cursor-pointer">
-                    {option}
-                  </span>
-                </p>
-              ))}
-            </div>
+            {options && <UserChoice options={options} />}
+
             <div className="h-[192px]"></div>
           </article>
         </section>
