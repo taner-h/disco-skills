@@ -71,7 +71,7 @@ function Main() {
 
   const initialOptions = [
     {
-      text: "OK, but aren't you the intelligent one? Just find the appropriate skill.",
+      text: "I'll describe the situation, but just find the appropriate skill.",
       callback: function () {
         setInputEnabled(true);
         setOptions(null);
@@ -113,13 +113,8 @@ function Main() {
       callback: function () {
         addMessage({ type: "user", text: this.text });
         setOptions(null);
-        setInput((prevInput) => {
-          const updatedInput = this.text;
-          handleSubmit("example", updatedInput);
-          return updatedInput;
-        });
-        // setInput(this.text);
-        // handleSubmit("example", this.text);
+        setInput(this.text);
+        handleSubmit("example", this.text);
         this.isClicked = true;
       },
       isClicked: false,
@@ -129,7 +124,7 @@ function Main() {
       callback: function () {
         addMessage({ type: "user", text: this.text });
         setOptions(null);
-        setInput((prevInput) => this.text);
+        setInput(this.text);
         handleSubmit("example", this.text);
         this.isClicked = true;
       },
@@ -140,7 +135,7 @@ function Main() {
       callback: function () {
         addMessage({ type: "user", text: this.text });
         setOptions(null);
-        setInput((prevInput) => this.text);
+        setInput(this.text);
         handleSubmit("example", this.text);
         this.isClicked = true;
       },
@@ -151,7 +146,7 @@ function Main() {
       callback: function () {
         addMessage({ type: "user", text: this.text });
         setOptions(null);
-        setInput((prevInput) => this.text);
+        setInput(this.text);
         handleSubmit("example", this.text);
         this.isClicked = true;
       },
