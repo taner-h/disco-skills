@@ -1,7 +1,8 @@
 import type { SkillMessage } from "@/components/message";
 
 export function parseMessage(text: string) {
-  const parts = text.split("_");
+  const parts = text.split("\n");
+
   const message: SkillMessage = {
     type: "skill",
     skill: parts[0],

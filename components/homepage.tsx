@@ -1,26 +1,7 @@
 import { Libre_Baskerville } from "next/font/google";
-import {
-  Message,
-  type MessageType,
-  type NpcMessage,
-  type SkillMessage,
-} from "./message";
-import {
-  useEffect,
-  useRef,
-  useState,
-  useLayoutEffect,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import { useEffect, useRef, type Dispatch, type SetStateAction } from "react";
+import { Message, type MessageType } from "./message";
 import { UserChoice } from "./user-choice";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { useSelector } from "react-redux";
-import type { RootState } from "@/redux/store";
-import { skillAttributes } from "@/data/data";
-import { generatePrompt } from "@/utils/generatePrompt";
-import loadingPanel from "@/content/images/backgrounds/loading-panel.png";
-import Image from "next/image";
 
 const baskerville = Libre_Baskerville({
   weight: ["400", "700"],
@@ -28,7 +9,7 @@ const baskerville = Libre_Baskerville({
   subsets: ["latin"],
 });
 
-export type Choice = {
+export type Option = {
   text: string;
   callback: () => void;
   isClicked: boolean;
@@ -52,8 +33,8 @@ export function Homepage({
   inputEnabled: boolean;
   messages: MessageType[];
   addMessage: (message: MessageType) => void;
-  options: Choice[] | null;
-  setOptions: Dispatch<SetStateAction<Choice[] | null>>;
+  options: Option[] | null;
+  setOptions: Dispatch<SetStateAction<Option[] | null>>;
   input: string;
   setInput: Dispatch<SetStateAction<string>>;
   handleSubmit: () => Promise<void>;
@@ -63,14 +44,16 @@ export function Homepage({
 
   useEffect(() => {
     if (bottomRef.current) {
-      bottomRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      bottomRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
     }
-  }, [messages]);
+  }, [messages, options]);
 
   return (
     <div className={baskerville.className}>
       <main className="min-h-screen relative text-lg leading-relaxed font-medium">
-        <section className="absolute h-screen w-[30%] bottom-0 right-[5%] py-[64px] pl-[72px] pr-[54px] dialogue-panel ">
+        <section className="absolute h-screen w-[576px] bottom-0 right-[5%] py-[64px] pl-[72px] pr-[54px] dialogue-panel ">
           <article className="h-[calc(100%-32px)] space-y-5 overflow-scroll">
             <div className="h-[192px]"></div>
             {messages.map((message: MessageType, index: number) => (
@@ -93,7 +76,7 @@ export function Homepage({
                 />
                 {!loading && (
                   <button
-                    onClick={handleSubmit}
+                    onClick={() => handleSubmit()}
                     className="w-full h-[42px] continue-btn"
                   ></button>
                 )}

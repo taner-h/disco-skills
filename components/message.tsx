@@ -2,7 +2,8 @@ export type MessageType =
   | NpcMessage
   | SystemMessage
   | SkillMessage
-  | UserMessage;
+  | UserMessage
+  | ErrorMessage;
 
 export type NpcMessage = {
   type: "npc";
@@ -29,6 +30,11 @@ export type SkillMessage = {
   text: string;
 };
 
+export type ErrorMessage = {
+  type: "error";
+  text: string;
+};
+
 export function Message({
   message,
   isLast,
@@ -52,11 +58,17 @@ export function Message({
         <span>{" – " + message.text}</span>
       </p>
     );
-  } else if (message.type === "skill") {
-    const skillColor =
+  }
+
+  if (message.type === "skill") {
+    let skillColor =
       attributeColors[
         message.attribute.toLowerCase() as keyof typeof attributeColors
       ];
+
+    if (!skillColor) {
+      skillColor = ["text-white", "text-white/50"];
+    }
 
     return (
       <p>
@@ -73,17 +85,30 @@ export function Message({
         </span>
       </p>
     );
-  } else if (message.type === "user") {
+  }
+
+  if (message.type === "user") {
     return (
       <p className={isLast ? "text-[#929ea6]" : "text-[#929ea6]/75"}>
         <span className="font-semibold">{"YOU"}</span>
         <span>{" – " + message.text}</span>
       </p>
     );
-  } else {
+  }
+
+  if (message.type === "system") {
     return (
       <p className="text-[#8bb37a]">
         <span>{message.text}</span>
+      </p>
+    );
+  }
+
+  if (message.type === "error") {
+    return (
+      <p className={isLast ? "text-[#d94421]" : "text-[#d94421]/75"}>
+        <span className="font-semibold">{"ERROR"}</span>
+        <span>{" – " + message.text}</span>
       </p>
     );
   }

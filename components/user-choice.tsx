@@ -1,6 +1,6 @@
-import type { Choice } from "./homepage";
+import type { Option } from "./homepage";
 
-export function UserChoice({ options }: { options: Choice[] }) {
+export function UserChoice({ options }: { options: Option[] }) {
   return (
     <div className="space-y-1">
       {options.map((option, index) => (
