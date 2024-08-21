@@ -93,6 +93,12 @@ body {
   background-size: 100% 42px;
 }
 
+.skill-portrait {
+  background: url("../content/images/ui/border-rough.png");
+  background-size: 204px 272px;
+  background-repeat: no-repeat;
+}
+
 button {
   color: var(--c-gray);
   background-color: var(--c-accent);
