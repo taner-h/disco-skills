@@ -1,4 +1,4 @@
-import type { Option } from "./homepage";
+import type { Option } from "./text-panel";
 
 export function UserChoice({ options }: { options: Option[] }) {
   return (

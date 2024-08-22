@@ -16,26 +16,18 @@ export type Option = {
   isClicked: boolean;
 };
 
-export function Homepage({
-  setWillSelectSkill,
+export function TextPanel({
   inputEnabled,
-  setInputEnabled,
   messages,
-  addMessage,
   options,
-  setOptions,
   input,
   setInput,
   handleSubmit,
   loading,
 }: {
-  setWillSelectSkill: Dispatch<SetStateAction<boolean>>;
-  setInputEnabled: Dispatch<SetStateAction<boolean>>;
   inputEnabled: boolean;
   messages: MessageType[];
-  addMessage: (message: MessageType) => void;
   options: Option[] | null;
-  setOptions: Dispatch<SetStateAction<Option[] | null>>;
   input: string;
   setInput: Dispatch<SetStateAction<string>>;
   handleSubmit: () => Promise<void>;

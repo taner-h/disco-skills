@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Provider, useSelector } from "react-redux";
 import { store, type RootState } from "../redux/store";
 
-import { Homepage, type Option } from "@/components/homepage";
+import { TextPanel, type Option } from "@/components/text-panel";
 import { SkillSelection } from "@/components/skill-selection";
 import type { MessageType } from "@/components/message";
 import { helpMessage, initialMessage, systemMessage } from "@/data/data";
@@ -330,14 +330,10 @@ function Main() {
       {willSelectSkill ? (
         <SkillSelection setWillSelectSkill={setWillSelectSkill} />
       ) : (
-        <Homepage
-          setWillSelectSkill={setWillSelectSkill}
+        <TextPanel
           inputEnabled={inputEnabled}
-          setInputEnabled={setInputEnabled}
           messages={messages}
-          addMessage={addMessage}
           options={options}
-          setOptions={setOptions}
           input={input}
           setInput={setInput}
           handleSubmit={handleSubmit}
