@@ -4,6 +4,7 @@ import { Message, type MessageType } from "./message";
 import { UserChoice } from "./user-choice";
 import { Portrait } from "./portrait";
 import { Notification } from "./notification";
+import { CheckResult } from "./check-result";
 
 const baskerville = Libre_Baskerville({
   weight: ["400", "700"],
@@ -92,9 +93,12 @@ export function TextPanel({
             )}
             <div ref={bottomRef} className="h-[192px]"></div>
             {lastMessage.type === "skill" && (
-              <Notification
-                state={lastMessage.outcome as "Success" | "Failure"}
+              <CheckResult
+                outcome={lastMessage.outcome as "Success" | "Failure"}
               />
+              // <Notification
+              //   state={lastMessage.outcome as "Success" | "Failure"}
+              // />
             )}
           </article>
         </section>

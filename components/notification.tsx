@@ -3,7 +3,7 @@ export function Notification({ state }: { state: "Success" | "Failure" }) {
     <div
       className={`${
         state === "Success" ? "notif-success" : "notif-fail"
-      }  flex items-center  justify-center h-[48px] w-[400px] font-[Dobra-Light] text-white fixed left-[35%] tracking-widest bottom-[12%] text-4xl`}
+      }  flex items-center justify-center h-[48px] w-[400px] font-[Dobra-Light] text-white tracking-widest text-4xl`}
     >
       CHECK {state.toUpperCase()}
     </div>
