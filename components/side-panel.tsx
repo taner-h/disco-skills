@@ -1,12 +1,5 @@
 "use client";
 
-import {
-  setSignatureSkill,
-  resetSignatureSkill,
-} from "../redux/slices/signatureSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../redux/store";
-import { SkillState } from "@/types/scoreTypes";
 import { skillDescriptions } from "@/utils/skillDescriptions";
 import { skillImages } from "@/utils/skillImages";
 

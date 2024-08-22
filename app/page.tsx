@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Provider, useSelector } from "react-redux";
-import { store, type RootState } from "../redux/store";
 
 import { TextPanel, type Option } from "@/components/text-panel";
 import { SkillSelection } from "@/components/skill-selection";
@@ -12,7 +11,7 @@ import { generatePrompt } from "@/utils/generatePrompt";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { parseMessage } from "@/utils/parseMessage";
 
-function Main() {
+export default function Home() {
   const [willSelectSkill, setWillSelectSkill] = useState(false);
   const [inputEnabled, setInputEnabled] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
@@ -22,10 +21,6 @@ function Main() {
     systemMessage,
   ]);
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
-
-  // const selectedSkill = useSelector(
-  //   (state: RootState) => state.signature.skill
-  // );
 
   async function handleSubmit(behaviour = "default", exampleInput = "") {
     const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
@@ -346,13 +341,5 @@ function Main() {
         />
       )}
     </main>
-  );
-}
-
-export default function Home() {
-  return (
-    <Provider store={store}>
-      <Main />
-    </Provider>
   );
 }
