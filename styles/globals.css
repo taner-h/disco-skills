@@ -110,6 +110,18 @@ body {
   background-size: cover;
 }
 
+.notif-success {
+  background: url("../content/images/backgrounds/notif-success.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.notif-fail {
+  background: url("../content/images/backgrounds/notif-fail.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 button {
   color: var(--c-gray);
   background-color: var(--c-accent);
