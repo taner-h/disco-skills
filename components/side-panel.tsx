@@ -15,13 +15,15 @@ import type { Dispatch, SetStateAction } from "react";
 
 export default function SidePanel({
   setWillSelectSkill,
+  setSelectedSkill,
+  clickedSkill,
 }: {
+  setSelectedSkill: Dispatch<SetStateAction<string | null>>;
   setWillSelectSkill: Dispatch<SetStateAction<boolean>>;
+  clickedSkill: string;
 }) {
-  const dispatch = useDispatch();
-  const selectedSkill = useSelector((state: RootState) => state.selectedSkill);
-  const skillHeadline: string = skillDescriptions[selectedSkill][0];
-  const skillImage = skillImages[selectedSkill];
+  const skillHeadline: string = skillDescriptions[clickedSkill][0];
+  const skillImage = skillImages[clickedSkill];
 
   function convertTitle(input: string): string {
     const words = input.replace(/([a-z])([A-Z])/g, "$1 $2");
@@ -31,12 +33,7 @@ export default function SidePanel({
     return allCaps;
   }
 
-  const title = convertTitle(selectedSkill);
-
-  const handleSetSignature = (skill: keyof SkillState) => {
-    dispatch(resetSignatureSkill());
-    dispatch(setSignatureSkill(skill));
-  };
+  const title = convertTitle(clickedSkill);
 
   return (
     <aside className="flex flex-row mx-2 gap-2 md:m-12 md:gap-8 2xl:flex-col 2xl:gap-0 2xl:p-0 2xl:m-0 justify-center items-center 2xl:py-12 rounded-md">
@@ -60,7 +57,7 @@ export default function SidePanel({
         <div className="flex flex-col gap-1">
           <button
             onClick={() => {
-              handleSetSignature(selectedSkill);
+              setSelectedSkill(clickedSkill);
               setWillSelectSkill(false);
             }}
           >

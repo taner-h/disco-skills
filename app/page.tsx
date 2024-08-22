@@ -21,10 +21,11 @@ function Main() {
     initialMessage,
     systemMessage,
   ]);
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
-  const selectedSkill = useSelector(
-    (state: RootState) => state.signature.skill
-  );
+  // const selectedSkill = useSelector(
+  //   (state: RootState) => state.signature.skill
+  // );
 
   async function handleSubmit(behaviour = "default", exampleInput = "") {
     const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
@@ -328,7 +329,11 @@ function Main() {
   return (
     <main className={willSelectSkill ? "bg-dark" : "bg-light"}>
       {willSelectSkill ? (
-        <SkillSelection setWillSelectSkill={setWillSelectSkill} />
+        <SkillSelection
+          setWillSelectSkill={setWillSelectSkill}
+          setSelectedSkill={setSelectedSkill}
+          selectedSkill={selectedSkill}
+        />
       ) : (
         <TextPanel
           inputEnabled={inputEnabled}

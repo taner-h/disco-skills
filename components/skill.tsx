@@ -4,33 +4,23 @@ import Image from "next/image";
 
 export default function Skill({
   imageSource,
-  score = 0,
-  modifier = 1,
   title = "[title]",
-  isSignature = false,
-  isSelected = false,
-  updateFunction,
+  isSelected,
+  isClicked,
+  handleClick,
 }: {
   imageSource: any;
-  score: number;
-  modifier: number;
   title: string;
-  isSignature: boolean;
   isSelected: boolean;
-  updateFunction: any;
+  isClicked: boolean;
+  handleClick: () => void;
 }) {
-  let newModifier = modifier;
-  if (isSignature) {
-    score++;
-    newModifier++;
-  }
-
   return (
     <div
-      className={`skill-container ${isSelected ? "selected-skill" : ""}`}
-      onClick={updateFunction}
+      className={`skill-container ${isClicked ? "selected-skill" : ""}`}
+      onClick={handleClick}
     >
-      <div className={!isSignature ? "grayscale" : ""}>
+      <div className={!isSelected ? "grayscale" : ""}>
         <Image src={imageSource} width={368} height={512} alt="" />
       </div>
       <h6
