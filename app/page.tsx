@@ -58,6 +58,7 @@ export default function Home() {
         text: "An error has occured.",
       });
       setOptions(initialOptions);
+      setLoading(false);
 
       console.log(error);
     }

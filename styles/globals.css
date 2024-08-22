@@ -84,7 +84,6 @@ body {
   background-size: cover;
   background-position: bottom;
   opacity: 0.9;
-  /* background-position: bottom right 10%; */
 }
 
 .continue-btn {
@@ -97,6 +96,18 @@ body {
   background: url("../content/images/ui/border-rough.png");
   background-size: 204px 272px;
   background-repeat: no-repeat;
+}
+
+.success-bg {
+  background: url("../content/images/backgrounds/success.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fail-bg {
+  background: url("../content/images/backgrounds/fail.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 button {

@@ -37,6 +37,13 @@ export function TextPanel({
 
   const lastMessage = messages[messages.length - 1];
 
+  const isSuccess =
+    lastMessage.type === "skill" && lastMessage.outcome === "Success";
+  const isFail =
+    lastMessage.type === "skill" && lastMessage.outcome === "Failure";
+
+  const checkBackground = isSuccess ? "success-bg" : isFail ? "fail-bg" : "";
+
   useEffect(() => {
     if (bottomRef.current) {
       bottomRef.current.scrollIntoView({
@@ -47,8 +54,10 @@ export function TextPanel({
 
   return (
     <div className={baskerville.className}>
-      <main className="min-h-screen relative text-lg leading-relaxed font-medium">
-        <section className="absolute h-screen w-[576px] bottom-0 right-[5%] py-[64px] pl-[72px] pr-[54px] dialogue-panel ">
+      <main
+        className={`min-h-screen relative text-lg leading-relaxed font-medium ${checkBackground}`}
+      >
+        <section className="absolute h-screen w-[576px] bottom-0 right-[5%] py-[64px] pl-[72px] pr-[54px] dialogue-panel">
           {lastMessage.type === "skill" && (
             <Portrait skill={lastMessage.skill} />
           )}
