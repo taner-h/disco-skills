@@ -41,39 +41,3 @@ export const skillAttributes = {
   interfacing: "motorics",
   composure: "motorics",
 };
-// DUMMY
-
-const skillMessages: MessageType[] = [
-  {
-    type: "skill",
-    skill: "Shivers",
-    attribute: "physique",
-    difficulty: "Medium",
-    outcome: "Success",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
-  },
-  {
-    type: "skill",
-    skill: "Inland Empire",
-    attribute: "psyche",
-    difficulty: "Impossible",
-    outcome: "Failure",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
-  },
-  {
-    type: "skill",
-    skill: "Logic",
-    attribute: "intellect",
-    difficulty: "Medium",
-    outcome: "Success",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
-  },
-  {
-    type: "skill",
-    skill: "Savoir Faire",
-    attribute: "motorics",
-    difficulty: "Impossible",
-    outcome: "Success",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus quia maiores quisquam, ducimus illo! Illo, nesciunt.",
-  },
-];

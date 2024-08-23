@@ -4,9 +4,9 @@ import "../styles/resize.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Disco Elysium Skill Editor",
+  title: "Disco Skills",
   description:
-    "An unofficial, fan-made site which mimics the attributes and skills page from Disco Elysium.",
+    "A web application that transforms user-inputted scenarios into unique AI-generated dialogues, with options to customize the style or tone inspired by Disco Elysium.",
 };
 
 export default function RootLayout({
