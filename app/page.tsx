@@ -8,8 +8,8 @@ import { SkillSelection } from "@/components/skill-selection";
 import type { MessageType } from "@/components/message";
 import { helpMessage, initialMessage, systemMessage } from "@/data/data";
 import { generatePrompt } from "@/utils/generatePrompt";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { parseMessage } from "@/utils/parseMessage";
+import { sendPrompt } from "./actions";
 
 export default function Home() {
   const [willSelectSkill, setWillSelectSkill] = useState(false);
@@ -23,9 +23,6 @@ export default function Home() {
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
   async function handleSubmit(behaviour = "default", exampleInput = "") {
-    const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-    if (!API_KEY) return;
-
     if (behaviour === "default") addMessage({ type: "user", text: input });
     setInputEnabled(false);
 
@@ -39,13 +36,8 @@ export default function Home() {
     const prompt = generatePrompt(selectedSkill, inputText, behaviour);
 
     try {
-      const genAI = new GoogleGenerativeAI(API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
       setLoading(true);
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = response.text();
+      const text = await sendPrompt(prompt);
       setLoading(false);
 
       const message = parseMessage(text);

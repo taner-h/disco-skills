@@ -21,10 +21,10 @@ export function generatePrompt(
 There shouldn't be any markdown formatting. The response should be exactly 5 lines. The format of your answer should be as follows: Skill\nAttribute\nDifficulty\nOutcome\nGenerated Skill Text
 
 Attributes and 6 Skills of each attributes are: 
-INTELLECT: LOGIC, ENCYCLOPEDIA, RHETORIC, DRAMA, CONCEPTUALIZATION, VISUAL CALCULUS
-PSYCHE: VOLITION, INLAND EMPIRE, EMPATHY, AUTHORITY, ESPRIT DE CORPS, SUGGESTION
-PHYSIQUE: ENDURANCE, PAIN THRESHOLD, PHYSICAL INSTRUMENT, ELECTROCHEMISTRY, SHIVERS, HALF LIGHT
-MOTORICS: HAND/EYE COORDINATION, PERCEPTION, REACTION SPEED, SAVOIR FAIRE, INTERFACING, COMPOSURE
+Intellect: Logic, Encyclopedia, Rhetoric, Drama, Conceptualization, Visual Calculus
+Psyche: Volition, Inland Empire, Empathy, Authority, Esprit De Corps, Suggestion
+Physique: Endurance, Pain Threshold, Physical Instrument, Electrochemistry, Shivers, Half Light
+Motorics: Hand/Eye Coordination, Perception, Reaction Speed, Savoir Faire, Interfacing, Composure
 Difficulty Levels: Trivial, Easy, Medium, Challenging, Formidable, Legendary, Heroic, Godly, Impossible
 Outcome: Success, Failure, Critical Success, Critical Failure
 

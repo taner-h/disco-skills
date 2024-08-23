@@ -1,13 +1,16 @@
 import type { ErrorMessage, SkillMessage } from "@/components/message";
 
-export function parseMessage(text: string) {
+const errorMessage = {
+  type: "error",
+  text: "An error occurred while generating the response. Please try again.",
+} as ErrorMessage;
+
+export function parseMessage(text: string | undefined) {
+  if (!text) return errorMessage;
+
   const parts = text.split("\n");
 
-  if (parts.length < 5)
-    return {
-      type: "error",
-      text: "An error occurred while generating the response. Please try again.",
-    } as ErrorMessage;
+  if (parts.length < 5) return errorMessage;
 
   return {
     type: "skill",
