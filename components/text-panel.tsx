@@ -1,6 +1,6 @@
 import { Libre_Baskerville } from "next/font/google";
 import { useEffect, useRef, type Dispatch, type SetStateAction } from "react";
-import { Message, type MessageType } from "./message";
+import { Message } from "./message";
 import { UserChoice } from "./user-choice";
 import { Portrait } from "./portrait";
 import { Notification } from "./notification";
@@ -11,12 +11,6 @@ const baskerville = Libre_Baskerville({
   style: ["normal", "italic"],
   subsets: ["latin"],
 });
-
-export type Option = {
-  text: string;
-  callback: () => void;
-  isClicked: boolean;
-};
 
 export function TextPanel({
   inputEnabled,

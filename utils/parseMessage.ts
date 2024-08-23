@@ -1,5 +1,3 @@
-import type { ErrorMessage, SkillMessage } from "@/components/message";
-
 const errorMessage = {
   type: "error",
   text: "An error occurred while generating the response. Please try again.",

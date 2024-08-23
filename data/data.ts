@@ -1,5 +1,3 @@
-import type { MessageType, NpcMessage } from "@/components/message";
-
 export const initialMessage = {
   type: "npc",
   name: "Distant Echo",

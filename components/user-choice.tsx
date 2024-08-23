@@ -1,5 +1,3 @@
-import type { Option } from "./text-panel";
-
 export function UserChoice({ options }: { options: Option[] }) {
   return (
     <div className="space-y-1">

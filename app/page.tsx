@@ -3,9 +3,8 @@
 import { useState } from "react";
 import { Provider, useSelector } from "react-redux";
 
-import { TextPanel, type Option } from "@/components/text-panel";
+import { TextPanel } from "@/components/text-panel";
 import { SkillSelection } from "@/components/skill-selection";
-import type { MessageType } from "@/components/message";
 import { helpMessage, initialMessage, systemMessage } from "@/data/data";
 import { generatePrompt } from "@/utils/generatePrompt";
 import { parseMessage } from "@/utils/parseMessage";

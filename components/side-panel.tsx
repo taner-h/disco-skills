@@ -15,7 +15,7 @@ export default function SidePanel({
   setWillSelectSkill: Dispatch<SetStateAction<boolean>>;
   clickedSkill: string;
 }) {
-  const skillHeadline: string = skillDescriptions[clickedSkill][0];
+  const skillHeadline: string = skillDescriptions[clickedSkill];
   const skillImage = skillImages[clickedSkill];
 
   function convertTitle(input: string): string {

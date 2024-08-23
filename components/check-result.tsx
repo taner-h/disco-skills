@@ -1,8 +1,6 @@
 import { Dice } from "./dice";
 import { Notification } from "./notification";
 
-type Result = 1 | 2 | 3 | 4 | 5 | 6;
-
 export function CheckResult({ outcome }: { outcome: "Success" | "Failure" }) {
   function getRandomInt(min: number, max: number) {
     min = Math.ceil(min);

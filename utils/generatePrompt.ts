@@ -1,7 +1,5 @@
-import type { SkillState } from "@/types/scoreTypes";
-
 export function generatePrompt(
-  selectedSkill: keyof SkillState | null,
+  selectedSkill: string | null,
   input: string,
   behaviour: string
 ) {
